@@ -1,37 +1,36 @@
 <?php
 // tìm ước số chung lớn nhất (USCLN) và bội số chung nhỏ nhất (BSCNN) của hai số nguyên dương a và b.
 
-$a = $_POST['soa'];
-$b = $_POST['sob'];
-
-function UCLN($a, $b)
+/**
+ * Tìm UCLN của a và b
+ * @param int $a,$b tìm UCLN
+ * @return int
+ */
+function ucln(int $a, int $b): int
 {
-    for ($i = 2; $i <= $a && $i <= $b; $i++) {
-        if (($a % $i) == 0 && ($b % $i) == 0) {
-            return $i;
-        } else {
-            return false;
-        }
+    if ($b == 0) {
+        return $a;
     }
+    while ($b != 0) {
+        $sochia = $b;
+        $b = $a % $b;
+        $a = $sochia;
+    }
+    return $a;
 }
 
-function BCNN($a, $b)
+echo ucln(49, 28);
+//expect 7
+
+/**
+ * Tìm BCNN của a và b
+ * @param int $a,$b tìm BCNN
+ * @return int
+ */
+function bcnn(int $a, int $b): int
 {
-    if (UCLN($a, $b) == false) {
-        return ($a * $b);
-    } else {
-        return ($a * $b) /  UCLN($a, $b);
-    }
+    return ($a * $b) /  ucln($a, $b);
 }
-?>
 
-<form action="" method="post">
-    <input type="number" name="soa" value="" placeholder="Nhập a:">
-    <input type="number" name="sob" value="" placeholder="Nhập b:">
-    <input type="submit" placeholder="Kết quả">
-</form>
-
-
-<?php
-echo "Ước chung lớn nhất của $a và $b là: " . UCLN($a, $b)  . "<br> Bội chung nhỏ nhất của $a và $b là: " . BCNN($a, $b);
-?>
+echo bcnn(30, 36);
+//expect 180

@@ -1,11 +1,12 @@
 <?php
 // chuyển số nguyên n từ hệ thập phân sang hệ cơ số b
 
-
-$n = $_POST['son'];
-$b = $_POST['sob'];
-
-function HeCoSo($n, $b)
+/**
+ * Chuyển só n sang hệ cơ só b
+ * @param int $n,$b chuyển n sang hệ b
+ * @return string
+ */
+function heCoSo(int $n, int $b): string
 {
     if ($n < 0 || $b < 2 || $b > 16) {
         return false;
@@ -29,16 +30,6 @@ function HeCoSo($n, $b)
     }
     return strrev($kq);
 }
-?>
 
-
-<form action="" method="post">
-    <input type="number" name="son" value="" placeholder="Nhập n:">
-    <input type="number" name="sob" value="" placeholder="Nhập b:">
-    <input type="submit" placeholder="Kết quả">
-</form>
-
-<?php
-echo " Số $n chuyển sang hệ số $b = " . HeCoSo($n, $b);
-
-?>
+echo heCoSo(15, 2);
+// expect: 1111

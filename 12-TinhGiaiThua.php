@@ -1,8 +1,12 @@
 <?php
 // tính giai thừa của một số nguyên dương
 
-$n = $_POST['son'];
-function GiaiThua($n)
+/**
+ * Tính giai thừa của só n
+ * @param int $n Tính giai thừa
+ * @return int
+ */
+function giaiThua(int $n): int
 {
     $tich = 1;
     for ($i = 2; $i <= $n; $i++) {
@@ -10,13 +14,6 @@ function GiaiThua($n)
     }
     return $tich;
 }
-?>
 
-<form action="" method="post">
-    <input type="number" name="son" value="" placeholder="Nhập n:">
-    <input type="submit" value="Kết quả">
-</form>
-
-<?php
-echo "Giai thừa của $n là:" . GiaiThua($n);
-?>
+echo giaiThua(5);
+//expect: 120

@@ -2,8 +2,12 @@
 <?php
 // Viết chương trình tìm n số Fibonacci đầu tiên trong PHP.
 
-function SoFibonacci($x)
-
+/**
+ * tìm số fibonacci x
+ * @param int $x số fibonacci thứ n
+ * @return int
+ */
+function SoFibonacci(int $x): int
 {
     if ($x < 2) {
         return $x;
