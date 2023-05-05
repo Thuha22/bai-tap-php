@@ -6,7 +6,7 @@
  * @return bool
  */
 
-function tinhChanLe(int $n): bool
+function isSoChanLe(int $n): bool
 {
     if ($n % 2 == 0) {
         return true;
@@ -14,7 +14,7 @@ function tinhChanLe(int $n): bool
     return false;
 }
 
-echo (tinhChanLe(13)) ? "số chẵn" : "số lẻ";
+echo (isSoChanLe(13)) ? "số chẵn" : "số lẻ";
 //expect: số lẻ
-echo (tinhChanLe(36)) ? "số chẵn" : "số lẻ";
+echo (isSoChanLe(36)) ? "số chẵn" : "số lẻ";
 //expect: số chẵn

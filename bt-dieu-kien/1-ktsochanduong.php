@@ -6,7 +6,7 @@
  * @return bool
  */
 
-function tinhChanLe(int $n): bool
+function isSoChanDuong(int $n): bool
 {
     if ($n % 2 == 0 && $n > 0) {
         return true;
@@ -14,7 +14,7 @@ function tinhChanLe(int $n): bool
     return false;
 }
 
-echo tinhChanLe(-14) ? 'TRUE' : 'FALSE';
+echo isSoChanDuong(-14) ? 'TRUE' : 'FALSE';
 //expect: FALSE
-echo tinhChanLe(28) ? 'TRUE' : 'FALSE';
+echo isSoChanDuong(28) ? 'TRUE' : 'FALSE';
 //expect: TRUE

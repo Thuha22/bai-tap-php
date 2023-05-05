@@ -6,7 +6,7 @@
  * @param string $ky_tu kiểm tra ký tự
  * @return string
  */
-function isVowelConsonants(string $ky_tu): string
+function VowelConsonants(string $ky_tu): string
 {
     if (($ky_tu >= "A" && $ky_tu <= "Z") || ($ky_tu >= "a" && $ky_tu <= "z")) {
         switch ($ky_tu) {
@@ -32,11 +32,11 @@ function isVowelConsonants(string $ky_tu): string
     }
 }
 
-echo isVowelConsonants("A");
+echo VowelConsonants("A");
 //expect: A là nguyên âm
-echo isVowelConsonants("p");
+echo VowelConsonants("p");
 //expect: p là phụ âm
-echo isVowelConsonants("3");
+echo VowelConsonants("3");
 //expect: 3 là ký tự số
-echo isVowelConsonants("*");
+echo VowelConsonants("*");
 //expect: * là ký tự khác

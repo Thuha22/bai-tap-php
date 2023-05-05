@@ -6,7 +6,7 @@
  * @return bool
  */
 
-function tinhChanLe(int $n): bool
+function isSoLeAm(int $n): bool
 {
     if ($n % 2 != 0 && $n < 0) {
         return true;
@@ -14,7 +14,7 @@ function tinhChanLe(int $n): bool
     return false;
 }
 
-echo tinhChanLe(-17) ? 'TRUE' : 'FALSE';
+echo isSoLeAm(-17) ? 'TRUE' : 'FALSE';
 //expect:TRUE
-echo tinhChanLe(19) ? 'TRUE' : 'FALSE';
+echo isSoLeAm(19) ? 'TRUE' : 'FALSE';
 //expect: FALSE

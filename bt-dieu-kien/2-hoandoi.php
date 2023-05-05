@@ -4,17 +4,20 @@
 /**
  * Hoán đổi giá trị của a và b
  * @param string $a, int $b hoán đổi giá trị
- * @return string
+ * @return 
  */
-function changeValue(string $a, string  $b): string
+function changeValue(string &$a, string  &$b)
 {
     $change = $b;
     $b = $a;
     $a = $change;
-    return "a = $a, b = $b";
+    return;
 }
 
-echo changeValue(5, 10);
-//expect: a = 10, b = 5
-echo changeValue('foo', 'bar');
-//expect: a = bar, b = foo
+$a = 'foo';
+$b = 'bar';
+echo $a; //expect:foo
+echo $b; //expect: bar
+changeValue($a, $b);
+echo $a; //expect: bar
+echo $b; //expect:foo
