@@ -8,8 +8,15 @@
  */
 function isTamGiacVuongCan(int $a, int $b, int $c): bool
 {
-    if ((($a + $b) > $c) && (($a + $c) > $b) && (($b + $c) > $a) && ((($a * $a == $b * $b + $c * $c) && $b == $c) || (($b * $b == $a * $a + $c * $c) && $a = $c) || (($c * $c == $a * $a + $b * $b) && $a == $b))) {
-        return true;
+    $A = $a * $a;
+    $B = $b * $b;
+    $C =  $c * $c;
+    //Điều kiện để a,b,c là 3 cạnh tam giác
+    if ((($a + $b) > $c) && (($a + $c) > $b) && (($b + $c) > $a)) {
+        //Điều kiện để tam giác vuông cân
+        if (($A == $B + $C && $B == $C) || ($B == $A + $C && $A == $C) || ($C == $A + $B && $A == $B)) {
+            return true;
+        }
     }
     return false;
 }

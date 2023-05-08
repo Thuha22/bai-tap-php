@@ -8,8 +8,12 @@
  */
 function isTamGiacDeu(int $a, int $b, int $c): bool
 {
-    if ((($a + $b) > $c) && (($a + $c) > $b) && (($b + $c) > $a) && $a == $b && $a == $c) {
-        return true;
+    //Điều kiện để a,b,c là 3 cạnh tam giác
+    if (($a + $b) > $c && ($a + $c) > $b && ($b + $c) > $a) {
+        //Điều kiện để tam giác đều
+        if ($a == $b && $a == $c) {
+            return true;
+        }
     }
     return false;
 }

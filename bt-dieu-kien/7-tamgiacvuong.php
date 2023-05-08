@@ -8,8 +8,15 @@
  */
 function isTamGiacVuong(int $a, int $b, int $c): bool
 {
-    if ((($a + $b) > $c) && (($a + $c) > $b) && (($b + $c) > $a) && ((($a * $a) == ($b * $b + $c * $c)) || ($b * $b == $a * $a + $c * $c) || ($c * $c == $a * $a + $b * $b))) {
-        return true;
+    $A = $a * $a;
+    $B = $b * $b;
+    $C =  $c * $c;
+    //Điều kiện để a,b,c là 3 cạnh tam giác
+    if ((($a + $b) > $c) && (($a + $c) > $b) && (($b + $c) > $a)) {
+        //Điều kiện để tam giác vuông(Định lý py-ta-go)
+        if ($A == $B + $C || $B == $A + $C || $C == $A + $B) {
+            return true;
+        }
     }
     return false;
 }
