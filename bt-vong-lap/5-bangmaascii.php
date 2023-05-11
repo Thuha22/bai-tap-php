@@ -1,7 +1,8 @@
-<table border="1">
+<!-- Viết chương trình in ra bảng mã ASCII -->
+<table border="1" style="text-align: center;">
     <tr>
-        <td>Hệ thập phân (DEC)</td>
-        <td>Hệ thập lục phân (HEX)</td>
+        <td width="100px">DEC</td>
+        <td width="100px">Char</td>
     </tr>
     <tr>
         <td>
@@ -15,7 +16,7 @@
             <?php
             for ($i = 0; $i <= 127; $i++) {
                 $a = chr($i);
-                echo "$a<br>";
+                echo   "$a<br>";
             }
             ?>
         </td>
