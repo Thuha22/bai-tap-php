@@ -2,18 +2,27 @@
 // Kiểm tra xem 3 số a, b, c có thỏa mãn là 3 cạnh của một tam giác cân không. 
 
 /**
+ * Kiểm tra 3 số có thỏa mãn là 3 cạnh của tam giác không
+ * @param int $a, $b, $c 
+ * @return bool
+ */
+function isTamGiac(int $a, int $b, int $c): bool
+{
+    if ($a + $b > $c && $a + $c > $b && $b + $c > $a) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * Kiểm tra 3 số có thỏa mãn là 3 cạnh của tam giác cân không
  * @param int $a, $b, $c 
  * @return bool
  */
 function isTamGiacCan(int $a, int $b, int $c): bool
 {
-    //Điều kiện để a,b,c là 3 cạnh tam giác
-    if ($a + $b > $c && $a + $c > $b && $b + $c > $a) {
-        //Điều kiện để tam giác cân
-        if (($a == $b) || ($a == $c) || ($b == $c)) {
-            return true;
-        }
+    if (isTamGiac($a, $b, $c) && ($a == $b) || ($a == $c) || ($b == $c)) {
+        return true;
     }
     return false;
 }
