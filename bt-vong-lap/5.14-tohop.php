@@ -26,5 +26,17 @@ function tinhToHop(int $k, int $n): int
     return $c;
 }
 
-echo tinhToHop(3, 6);
-//expect: 20
+?>
+<form action="" method="post">
+    <input type="number" name="k" value="" placeholder="Nhập k:">
+    <input type="number" name="n" value="" placeholder="Nhập n:">
+    <input type="submit">
+</form>
+
+<?php
+if (isset($_POST['k']) && isset($_POST['n'])) {
+    $k = $_POST['k'];
+    $n = $_POST['n'];
+    echo "Tổ hợp chập $k của $n là " . tinhToHop($k, $n);
+}
+?>
