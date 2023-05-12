@@ -10,15 +10,15 @@
 
 /**
  * Tính số gà($x), chó($y)
- * @param
+ * @param int $animal, $foot
  * @return string
  */
-function giaiToan(): string
+function giaiToan(int $animal, int $foot): string
 {
     $str = "";
-    for ($x = 1; $x <= 36; $x++) {
-        for ($y = 1; $y <= 36; $y++) {
-            if ($x + $y == 36 && 2 * $x + 4 * $y == 100) {
+    for ($x = 1; $x <= $animal; $x++) {
+        for ($y = 1; $y <= $animal; $y++) {
+            if ($x + $y == $animal && 2 * $x + 4 * $y == $foot) {
                 $str .= "($x,$y) ";
             }
         }
@@ -26,5 +26,17 @@ function giaiToan(): string
     return $str;
 }
 
-echo giaiToan();
-//expect: (22,14)
+?>
+<form action="" method="post">
+    <input type="number" name="con" value="" placeholder="Nhập tổng số gà và chó:">
+    <input type="number" name="chan" value="" placeholder="Nhập tổng số chân:">
+    <input type="submit">
+</form>
+
+<?php
+if (isset($_POST['con']) && isset($_POST['chan'])) {
+    $animal = $_POST['con'];
+    $foot = $_POST['chan'];
+    echo "Số gà và chó lần lượt là " . giaiToan($animal, $foot);
+}
+?>
