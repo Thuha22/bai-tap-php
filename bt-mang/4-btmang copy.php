@@ -71,34 +71,32 @@ function tinhTBC(): int
 <p>4. Tìm số âm lẻ nhỏ nhất</p>
 <p>5. Tính trung bình cộng các phần tử</p>
 <p>6. Thoát</p>
-<p> Nhập vào một lựa chọn:</p>
-<form action="" method="post">
-    <input type="number" name="hd" value="" placeholder="">
-    <input type="submit">
-</form>
+
 <?php
-if (isset($_POST['hd'])) {
-    $chon = $_POST['hd'];
+$chon = 1;
+while ($chon != 0) {
+    $chon = readline("Mời bạn chọn một mục (1-6):");
     switch ($chon) {
         case 1:
-            echo maxNumber();
+            echo maxNumber() . "\n";
             break;
         case 2:
-            echo minNumber();
+            echo minNumber() . "\n";
             break;
         case 3:
-            echo soDuongChanMax();
+            echo soDuongChanMax() . "\n";
             break;
         case 4:
-            echo soAmLeMin();
+            echo soAmLeMin() . "\n";
             break;
         case 5:
-            echo tinhTBC();
+            echo tinhTBC() . "\n";
             break;
         case 6:
             return 0;
         default:
-            echo "vui lòng chọn một lựa chọn (1-6):";
+            echo "Hành động không hợp lệ! \n";
     }
 }
+
 ?>

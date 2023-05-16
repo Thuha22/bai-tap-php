@@ -25,18 +25,6 @@ function giaiToan(int $animal, int $foot): string
     }
     return $str;
 }
-
-?>
-<form action="" method="post">
-    <input type="number" name="con" value="" placeholder="Nhập tổng số gà và chó:">
-    <input type="number" name="chan" value="" placeholder="Nhập tổng số chân:">
-    <input type="submit">
-</form>
-
-<?php
-if (isset($_POST['con']) && isset($_POST['chan'])) {
-    $animal = $_POST['con'];
-    $foot = $_POST['chan'];
-    echo "Số gà và chó lần lượt là " . giaiToan($animal, $foot);
-}
-?>
+$animal = readline("Nhập tổng số gà và chó:");
+$foot = readline("Nhập tổng số chân:");
+echo "Số gà và chó lần lượt là " . giaiToan($animal, $foot);
