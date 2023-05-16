@@ -16,18 +16,6 @@ function tinhNam(int $a, int $b): int
     }
     return $count;
 }
-?>
-
-<form action="" method="post">
-    <input type="number" name="cha" value="" placeholder="Nhập tuổi cha:">
-    <input type="number" name="con" value="" placeholder="Nhập tuổi con:">
-    <input type="submit">
-</form>
-
-<?php
-if (isset($_POST['cha']) && isset($_POST['con'])) {
-    $a = $_POST['cha'];
-    $b = $_POST['con'];
-    echo "Sau " . tinhNam($a, $b) . " năm thì tuổi cha gấp đôi tuổi con";
-}
-?>
+$a = readline("Nhập tuổi cha:");
+$b = readline("Nhập tuổi con:");
+echo "Sau " . tinhNam($a, $b) . " năm thì tuổi cha gấp đôi tuổi con";

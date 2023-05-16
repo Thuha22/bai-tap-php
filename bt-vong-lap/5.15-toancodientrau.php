@@ -30,18 +30,6 @@ function giaiToan(int $animal, int  $grass): string
 
 // echo giaiToan();
 // //expect: (4,18,78) (8,11,81) (12,4,84)
-
-?>
-<form action="" method="post">
-    <input type="number" name="trau" value="" placeholder="Nhập tổng số trâu:">
-    <input type="number" name="co" value="" placeholder="Nhập số cỏ:">
-    <input type="submit">
-</form>
-
-<?php
-if (isset($_POST['trau']) && isset($_POST['co'])) {
-    $animal = $_POST['trau'];
-    $grass = $_POST['co'];
-    echo "Số trâu đứng, trâu nằm , trâu già lần lượt là " . giaiToan($animal, $grass);
-}
-?>
+$animal = readline("Nhập tổng số trâu: ");
+$grass = readline("Nhập số cỏ: ");
+echo "Số trâu đứng, trâu nằm , trâu già lần lượt là " . giaiToan($animal, $grass);

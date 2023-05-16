@@ -1,5 +1,6 @@
 <?php
 // Với một giá trị N, nếu chúng ta muốn đổi N xu và chúng ta có nguồn cung vô hạn đối với mỗi đồng xu có giá trị S = {S1, S2, .., Sm}, chúng ta có thể thực hiện bao nhiêu cách để thực hiện thay đổi? Thứ tự của các đồng xu không quan trọng.
+// link hướng dẫn: https://v1study.com/video-php-solutions-solution-bai-tap-2-phan-mang-so-1-chieu.html
 
 $n = 10;
 $s = [2, 5, 3, 6];
@@ -7,7 +8,7 @@ $sopt = count($s);
 
 /**
  * Đếm các cách đổi n xu 
- * @param int $n, array $s
+ * @param int $n, array $s, int $sopt 
  * @return int 
  */
 function countCases(array $s, int $sopt, int $n): int
