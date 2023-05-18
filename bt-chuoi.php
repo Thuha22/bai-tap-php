@@ -2,10 +2,8 @@
 
 /**
  * 1. Nhập một chuỗi a bất kỳ từ bàn phím có kích thước trong khoảng (0,50).
- * @param string $a nhập vào chuỗi
- * @return
  */
-function nhapChuoi(string &$a)
+function nhapChuoi(&$a)
 {
     do {
         $a = readline("Nhập chuỗi (0-50):");
@@ -45,10 +43,10 @@ function kiemTraInHoa(string $a): string
 
 /**
  * 4. Nhập từ bàn phím một ký tự ch bất kỳ, kiểm tra xem trong chuỗi a có chứa ký tự đó hay không?
- * @param string $a, $ch
+ * @param string $a
  * @return string
  */
-function timKyTu(string $a, string $ch): string
+function timKyTu(string $a): string
 {
     do {
         $ch = readline("Nhập ký tự ch:");
@@ -61,21 +59,21 @@ function timKyTu(string $a, string $ch): string
 
 /**
  * 5. Nhập từ bàn phím một chuỗi b bất kỳ, kiểm tra xem b có nằm trong a hay không? Kiểm tra xem b có độ dài lớn hơn a hay không? Kiểm tra xem b có lớn hơn a hay không?
- * @param string $a,$b
+ * @param string $a
  * @return
  */
-function timChuoi(string $a, string $b)
+function timChuoi(string $a)
 {
     $b = readline("Nhập chuỗi b: ");
     if (strstr($a, $b) != null) {
-        echo "Chuỗi $a có chứa chuỗi $b";
+        echo "Chuỗi $a có chứa chuỗi $b \n";
     } else {
-        echo "Chuỗi $a không chứa chuỗi $b";
+        echo "Chuỗi $a không chứa chuỗi $b \n";
     }
     if (strlen($b) > strlen($a)) {
-        echo "Chuỗi $b có độ dài lớn hơn chuỗi $a";
+        echo "Chuỗi $b có độ dài lớn hơn chuỗi $a \n";
     } else {
-        echo "Chuỗi $b có độ dài không lớn hơn chuỗi $a";
+        echo "Chuỗi $b có độ dài không lớn hơn chuỗi $a \n";
     }
     if (strcmp($b, $a) > 0) {
         echo "Chuỗi $b lớn hơn chuỗi $a";
@@ -160,7 +158,6 @@ function tinhTBKyTu(string $a): float
     $tong = 0;
     for ($i = 0; $i <= strlen($a) - 1; $i++) {
         $tong += ord($a[$i]);
-        var_dump($tong);
     }
     return $tong / strlen($a);
 }
@@ -210,7 +207,13 @@ function themKyTuN(string $a): string
         return $a;
     }
 }
-function themKyTuT($a)
+
+/**
+ * 14. Hãy chèn vào giữa 2 ký tự in hoa bất kỳ của chuỗi a ký tự '\t'.
+ * @param string $a
+ * @return string
+ */
+function themKyTuT(string $a): string
 {
     for ($i = 0; $i < strlen($a) - 1; $i++) {
         if (($a[$i] >= 'A' && $a[$i] <= 'Z') && ($a[$i + 1] >= 'A' && $a[$i + 1] <= 'Z')) {
@@ -237,10 +240,10 @@ while ($chon != 0) {
             echo kiemTraInHoa($a) . "\n";
             break;
         case 4:
-            echo timKyTu($a, $ch) . "\n";
+            echo timKyTu($a) . "\n";
             break;
         case 5:
-            echo timChuoi($a, $b) . "\n";
+            echo timChuoi($a) . "\n";
             break;
         case 6:
             echo checkDoiXung($a) . "\n";
