@@ -11,19 +11,27 @@ function nhapMang(&$a)
     for ($i = 0; $i < $n; $i++) {
         $a[$i] = readline("Nhập vào a[$i]:");
     }
-    // var_dump($a);
     return;
 }
 
+// In ra mảng a
 function output($a)
 {
+    echo "a = [";
     for ($i = 0; $i < count($a); $i++) {
-        echo "\"$a[$i]\"" . "\n";
+        echo "\"$a[$i]\"" . ",";
     }
+    echo "]";
     return;
 }
 
-function maxSize($a)
+/**
+ * 2. Tìm những chuỗi có kích thước nhỏ nhất, lớn nhất.
+ * @param array $a
+ * @return string
+ */
+//chuỗi có kích thước lớn nhất
+function maxSize(array $a): string
 {
     $max = strlen($a[0]);
     for ($i = 1; $i < count($a); $i++) {
@@ -37,7 +45,9 @@ function maxSize($a)
         }
     }
 }
-function minSize($a)
+
+//Chuỗi có kích thước nhỏ nhất
+function minSize(array $a): string
 {
     $min = strlen($a[0]);
     for ($i = 1; $i < count($a); $i++) {
@@ -52,7 +62,12 @@ function minSize($a)
     }
 }
 
-function sizeTB($a)
+/**
+ * 3. Tính kích thước trung bình của các chuỗi.
+ * @param array $a
+ * @return float
+ */
+function sizeTB(array $a): float
 {
     $tong = 0;
     for ($i = 0; $i < count($a); $i++) {
@@ -61,7 +76,12 @@ function sizeTB($a)
     return $tong / count($a);
 }
 
-function lonHonSizeTB($a)
+/**
+ * 4. Hiển thị những chuỗi có kích thước lớn hơn kích thước trung bình. 
+ * @param array $a
+ * @return 
+ */
+function lonHonSizeTB(array $a)
 {
     $sizetb = sizeTB($a);
     for ($i = 0; $i < count($a); $i++) {
@@ -70,7 +90,14 @@ function lonHonSizeTB($a)
         }
     }
 }
-function sapXepTang($a)
+
+/**
+ * 5. Sắp xếp các chuỗi tăng dần, giảm dần theo kích thước.
+ * @param array $a
+ * @return 
+ */
+//Sắp xếp các chuỗi tăng dần
+function sapXepTang(array $a)
 {
     echo "Mảng sau khi sắp xếp theo thứ tự tăng dần là:\n";
     for ($i = 0; $i < count($a); $i++) {
@@ -86,7 +113,8 @@ function sapXepTang($a)
     return;
 }
 
-function sapXepGiam($a)
+// Sắp xếp các chuỗi giảm dần
+function sapXepGiam(array $a)
 {
     echo "Mảng sau khi sắp xếp theo thứ tự giảm dần là:\n";
     for ($i = 0; $i < count($a); $i++) {
@@ -102,7 +130,13 @@ function sapXepGiam($a)
     return;
 }
 
-function maxBangMa($a)
+/**
+ * 6. Tìm những chuỗi nhỏ nhất, lớn nhất theo thứ tự ký tự trong bảng mã ASCII.
+ * @param array $a
+ * @return string
+ */
+// Chuỗi lớn nhất
+function maxBangMa(array $a): string
 {
     $s = [];
     for ($i = 0; $i < count($a); $i++) {
@@ -111,7 +145,6 @@ function maxBangMa($a)
             $s[$i] += ord($a[$i][$j]);
         }
     }
-    var_dump($s);
     $max = $s[0];
     for ($i = 1; $i < count($s); $i++) {
         if ($s[$i] > $max) {
@@ -126,7 +159,8 @@ function maxBangMa($a)
     }
 }
 
-function minBangMa($a)
+// Chuỗi nhỏ nhất
+function minBangMa(array $a): string
 {
     $s = [];
     for ($i = 0; $i < count($a); $i++) {
@@ -135,7 +169,6 @@ function minBangMa($a)
             $s[$i] += ord($a[$i][$j]);
         }
     }
-    var_dump($s);
     $min = $s[0];
     for ($i = 1; $i < count($s); $i++) {
         if ($s[$i] < $min) {
@@ -150,7 +183,13 @@ function minBangMa($a)
     }
 }
 
-function sXTangBangMa($a)
+/**
+ * 7. Sắp xếp các chuỗi tăng dần, giảm dần theo thứ tự ký tự trong bảng mã ASCII.
+ * @param array $a
+ * @return 
+ */
+// Sắp xếp tăng dần
+function sXTangBangMa(array $a)
 {
     echo "Mảng sau khi sắp xếp tăng dần theo thứ tự ký tự trong bảng mã ASCII là:\n";
     $s = [];
@@ -160,7 +199,6 @@ function sXTangBangMa($a)
             $s[$i] += ord($a[$i][$j]);
         }
     }
-    var_dump($s);
     for ($i = 0; $i < count($s); $i++) {
         for ($j = $i + 1; $j < count($s); $j++) {
             if ($s[$i] > $s[$j]) {
@@ -173,7 +211,8 @@ function sXTangBangMa($a)
     output($a);
 }
 
-function sXGiamBangMa($a)
+//Sắp xếp giảm dần
+function sXGiamBangMa(array $a)
 {
     echo "Mảng sau khi sắp xếp giảm dần theo thứ tự ký tự trong bảng mã ASCII là:\n";
     $s = [];
@@ -183,8 +222,6 @@ function sXGiamBangMa($a)
             $s[$i] += ord($a[$i][$j]);
         }
     }
-    var_dump($s);
-
     for ($i = 0; $i < count($s); $i++) {
         for ($j = $i + 1; $j < count($s); $j++) {
             if ($s[$i] < $s[$j]) {
@@ -199,8 +236,10 @@ function sXGiamBangMa($a)
 
 /**
  * 8. Nhập vào từ bàn phím một chuỗi st có kích thước tối đa 30. Tìm những chuỗi trong mảng a có kích thước bằng chuỗi st. Tìm những chuỗi trong mảng a có chứa chuỗi st.
+ * @param array $a
+ * @return
  */
-function timChuoi($a)
+function timChuoi(array $a)
 {
     do {
         $st = readline("Nhập chuỗi st:");
@@ -222,6 +261,8 @@ function timChuoi($a)
 
 /**
  * 9. Tìm những chuỗi có tính đối xứng trong mảng a.
+ * @param array $a
+ * @return
  */
 function checkDoiXung(array $a)
 {
@@ -293,15 +334,194 @@ function kiemTraInHoa(array $a)
 function timKyTu(array $a)
 {
     do {
-        $c = readline("Nhập ký tự ch:");
+        $c = readline("Nhập ký tự c:");
     } while (strlen($c) != 1);
     for ($i = 0; $i < count($a); $i++) {
         if (strchr($a[$i], $c) != null) {
-            return "Chuỗi $a có chứa ký tự $c";
+            echo $a[$i] . "\n";
         }
     }
-    return "Chuỗi $a không chứa ký tự $c";
 }
+
+/**
+ * 14. Mỗi chuỗi trong mảng a có bao nhiêu từ?
+ * @param array $a
+ * @return 
+ */
+function demTu(array $a)
+{
+    for ($i = 0; $i < count($a); $i++) {
+        echo "Chuỗi \"$a[$i]\" có " . str_word_count($a[$i]) . " từ \n";
+    }
+    return;
+}
+
+/**
+ * 15. Nhập vào một ký tự rồi chèn ký tự đó vào vị trí thứ 5 của chuỗi cuối cùng.
+ * @param array $a
+ * @return 
+ */
+function themKyTu(array $a)
+{
+    do {
+        $c = readline("Nhập ký tự c:");
+    } while (strlen($c) != 1);
+    $vtcuoi = count($a) - 1;
+    if (strlen($a[$vtcuoi]) < 5) {
+        echo "Độ dài chuỗi không thỏa mãn điều kiện để chèn";
+    } else {
+        for ($j = strlen($a[$vtcuoi]) - 1; $j >= 4; $j--) {
+            $a[$vtcuoi][$j + 1] = $a[$vtcuoi][$j];
+        }
+        $a[$vtcuoi][4] = $c;
+        output($a);
+    }
+    return;
+}
+
+/**
+ * 16. Nối tất cả các chuỗi và in ra.
+ * @param array $a 
+ * @return string
+ */
+function noiChuoi(array $a): string
+{
+    $result = "";
+    for ($i = 0; $i < count($a); $i++) {
+        $result .= $a[$i];
+    }
+    return "$result";
+}
+
+/**
+ * 17. Hiển thị những chuỗi chứa chuỗi đầu tiên
+ * @param array $a 
+ * @return 
+ */
+function strContainFirstStr(array $a)
+{
+    for ($i = 1; $i < count($a); $i++) {
+        if (strstr($a[$i], $a[0]) != null) {
+            echo $a[$i] . "\n";
+        }
+    }
+    return;
+}
+
+/**
+ * 18. Kiểm tra xem chuỗi đầu tiên có bắt đầu bằng chuỗi "hello" không.
+ * @param array $a
+ * @return bool
+ */
+function checkStart(array $a): bool
+{
+    $start = substr($a[0], 0, 5);
+    if ($start == "hello") {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * 19. Tính giá trị trung bình theo vị trí ký tự trong bảng mã ASCII của từng chuỗi.
+ * @param array $a
+ * @return 
+ */
+function tinhTBKyTu(array $a)
+{
+    for ($i = 0; $i < count($a); $i++) {
+        $tong = 0;
+        for ($j = 0; $j <= strlen($a[$i]) - 1; $j++) {
+            $tong += ord($a[$i][$j]);
+        }
+        $tb = $tong / strlen($a[$i]);
+        echo "Giá trị trung bình theo vị trí ký tự chuỗi $a[$i] là: $tb \n";
+    }
+}
+
+/**
+ * 20. Nhập vào một độ dài xác định và in ra những chuỗi có độ dài bằng độ dài xác định đó.
+ * @param array $a
+ * @return 
+ */
+function strLength(array $a)
+{
+    do {
+        $l = readline("Nhập độ dài:");
+    } while ($l <= 0);
+    for ($i = 0; $i < count($a); $i++) {
+        if (strlen($a[$i]) == $l) {
+            echo "$a[$i] \n";
+        }
+    }
+    return;
+}
+
+/**
+ * 21. Đếm số từ trong chuỗi thứ N-1
+ * @param array $a
+ * @return int
+ */
+function demTuChuoiN(array $a): int
+{
+    return str_word_count($a[count($a) - 2]);
+}
+
+/**
+ * 22. Chuyển chuỗi thứ hai thành chuỗi in hoa.
+ * @param array $a
+ * @return
+ */
+function chuoiInHoa(array $a)
+{
+    $a[1] = strtoupper($a[1]);
+    output($a);
+}
+
+/**
+ * 23. Cắt ký tự trắng ở cuối chuỗi cuối cùngs
+ * @param array $a
+ * @return 
+ */
+function catCuoiChuoi(array $a)
+{
+    $a[count($a) - 1] = rtrim($a[count($a) - 1], " ");
+    output($a);
+    return;
+}
+
+/**
+ * 24. Cắt ký tự trắng ở đầu chuỗi cuối cùng
+ * @param array $a
+ * @return 
+ */
+function catDauChuoi(array $a)
+{
+    $a[count($a) - 1] = ltrim($a[count($a) - 1], " ");
+    output($a);
+    return;
+}
+
+/**
+ * 25. Cắt ký tự trắng thừa ở giữa chuỗi cuối cùng
+ * @param array $a
+ * @return 
+ */
+function catGiuaChuoi(array $a)
+{
+    $laststr = $a[count($a) - 1];
+    for ($i = 0; $i < strlen($laststr) - 1; $i++) {
+        while ($laststr[$i] == ' ' && $laststr[$i + 1] == ' ') {
+            for ($j = $i; $j < strlen($laststr) - 1; $j++) {
+                $laststr[$j] = $laststr[$j + 1];
+            }
+            $laststr[strlen($laststr) - 1] = "\0";
+        }
+    }
+    output($a);
+    return;
+}
+
 
 $chon = 1;
 while ($chon != 0) {
@@ -348,10 +568,43 @@ while ($chon != 0) {
             echo  kiemTraInHoa($a) . "\n";
             break;
         case 13:
-            echo themKyTuN($a) . "\n";
+            echo timKyTu($a) . "\n";
             break;
         case 14:
-            echo themKyTuT($a) . "\n";
+            echo demTu($a) . "\n";
+            break;
+        case 15:
+            echo themKyTu($a) . "\n";
+            break;
+        case 16:
+            echo noiChuoi($a) . "\n";
+            break;
+        case 17:
+            echo strContainFirstStr($a) . "\n";
+            break;
+        case 18:
+            echo (checkStart($a) ? 'true' : 'false') . "\n";
+            break;
+        case 19:
+            echo tinhTBKyTu($a) . "\n";
+            break;
+        case 20:
+            echo strLength($a) . "\n";
+            break;
+        case 21:
+            echo demTuChuoiN($a) . "\n";
+            break;
+        case 22:
+            echo chuoiInHoa($a) . "\n";
+            break;
+        case 23:
+            echo catCuoiChuoi($a) . "\n";
+            break;
+        case 24:
+            echo catDauChuoi($a) . "\n";
+            break;
+        case 25:
+            echo catGiuaChuoi($a) . "\n";
             break;
         default:
             echo "Hành động không hợp lệ! \n";
