@@ -13,6 +13,7 @@ function nhapMang(&$a)
     }
     return;
 }
+// a=["hello","abc@gmail.com","lap trinh 123","helloolleh","     ABC    def    gh   "]
 
 // In ra mảng a
 function output($a)
@@ -41,7 +42,7 @@ function maxSize(array $a): string
     }
     for ($j = 0; $j < count($a); $j++) {
         if (strlen($a[$j]) == $max) {
-            return "Chuỗi có kích thước lớn nhất là:" . $a[$j];
+            return "Chuỗi có kích thước lớn nhất là: \"$a[$j]\"";
         }
     }
 }
@@ -57,10 +58,12 @@ function minSize(array $a): string
     }
     for ($j = 0; $j < count($a); $j++) {
         if (strlen($a[$j]) == $min) {
-            return "Chuỗi có kích thước nhỏ nhất là:" . $a[$j];
+            return "\"Chuỗi có kích thước nhỏ nhất là: \"$a[$j]\"";
         }
     }
 }
+// expect:  Chuỗi có kích thước lớn nhất là:"     ABC    def    gh   "
+//          Chuỗi có kích thước nhỏ nhất là:"hello"
 
 /**
  * 3. Tính kích thước trung bình của các chuỗi.
@@ -75,6 +78,7 @@ function sizeTB(array $a): float
     }
     return $tong / count($a);
 }
+//expect: 13
 
 /**
  * 4. Hiển thị những chuỗi có kích thước lớn hơn kích thước trung bình. 
@@ -86,10 +90,11 @@ function lonHonSizeTB(array $a)
     $sizetb = sizeTB($a);
     for ($i = 0; $i < count($a); $i++) {
         if (strlen($a[$i]) > $sizetb) {
-            echo "$a[$i] \n";
+            echo "\"$a[$i]\" \n";
         }
     }
 }
+//expect: "     ABC    def    gh   "
 
 /**
  * 5. Sắp xếp các chuỗi tăng dần, giảm dần theo kích thước.
@@ -108,10 +113,14 @@ function sapXepTang(array $a)
                 $a[$j] = $temp;
             }
         }
+        var_dump(strlen($a[$i]));
     }
     output($a);
     return;
 }
+//expect:
+// Mảng sau khi sắp xếp theo thứ tự tăng dần là:
+// a = ["hello","helloolleh","lap trinh 123","abc@gmail.com","     ABC    def    gh   ",]
 
 // Sắp xếp các chuỗi giảm dần
 function sapXepGiam(array $a)
@@ -129,6 +138,8 @@ function sapXepGiam(array $a)
     output($a);
     return;
 }
+// Mảng sau khi sắp xếp theo thứ tự giảm dần là:
+// a = ["     ABC    def    gh   ","lap trinh 123","abc@gmail.com","helloolleh","hello",]
 
 /**
  * 6. Tìm những chuỗi nhỏ nhất, lớn nhất theo thứ tự ký tự trong bảng mã ASCII.
@@ -145,6 +156,7 @@ function maxBangMa(array $a): string
             $s[$i] += ord($a[$i][$j]);
         }
     }
+    // var_dump($s);
     $max = $s[0];
     for ($i = 1; $i < count($s); $i++) {
         if ($s[$i] > $max) {
@@ -154,10 +166,11 @@ function maxBangMa(array $a): string
     for ($i = 0; $i < count($a); $i++) {
         if ($s[$i] == $max) {
             clearstatcache();
-            return "Chuỗi lớn nhất theo thứ tự ký tự trong bảng mã ASCII là:" . $a[$i];
+            return "Chuỗi lớn nhất theo thứ tự ký tự trong bảng mã ASCII là: \"$a[$i]\"";
         }
     }
 }
+// expect:  Chuỗi lớn nhất theo thứ tự ký tự trong bảng mã ASCII là: "abc@gmail.com"
 
 // Chuỗi nhỏ nhất
 function minBangMa(array $a): string
@@ -178,10 +191,12 @@ function minBangMa(array $a): string
     for ($i = 0; $i < count($a); $i++) {
         if ($s[$i] == $min) {
             clearstatcache();
-            return "Chuỗi nhỏ nhất theo thứ tự ký tự trong bảng mã ASCII là:" . $a[$i];
+            return "Chuỗi nhỏ nhất theo thứ tự ký tự trong bảng mã ASCII là: \"$a[$i]\"";
         }
     }
 }
+
+// expect: Chuỗi nhỏ nhất theo thứ tự ký tự trong bảng mã ASCII là: "hello"
 
 /**
  * 7. Sắp xếp các chuỗi tăng dần, giảm dần theo thứ tự ký tự trong bảng mã ASCII.
@@ -202,14 +217,21 @@ function sXTangBangMa(array $a)
     for ($i = 0; $i < count($s); $i++) {
         for ($j = $i + 1; $j < count($s); $j++) {
             if ($s[$i] > $s[$j]) {
-                $temp = $a[$i];
+                $tempa = $a[$i];
                 $a[$i] = $a[$j];
-                $a[$j] = $temp;
+                $a[$j] = $tempa;
+                $temps = $s[$i];
+                $s[$i] = $s[$j];
+                $s[$j] = $temps;
             }
         }
     }
+    clearstatcache();
     output($a);
 }
+//expect:
+// Mảng sau khi sắp xếp tăng dần theo thứ tự ký tự trong bảng mã ASCII là:
+// a = ["hello","helloolleh","lap trinh 123","     ABC    def    gh   ","abc@gmail.com",]
 
 //Sắp xếp giảm dần
 function sXGiamBangMa(array $a)
@@ -225,14 +247,20 @@ function sXGiamBangMa(array $a)
     for ($i = 0; $i < count($s); $i++) {
         for ($j = $i + 1; $j < count($s); $j++) {
             if ($s[$i] < $s[$j]) {
-                $temp = $a[$i];
+                $tempa = $a[$i];
                 $a[$i] = $a[$j];
-                $a[$j] = $temp;
+                $a[$j] = $tempa;
+                $temps = $s[$i];
+                $s[$i] = $s[$j];
+                $s[$j] = $temps;
             }
         }
     }
+    clearstatcache();
     output($a);
 }
+// Mảng sau khi sắp xếp giảm dần theo thứ tự ký tự trong bảng mã ASCII là:
+// a = ["abc@gmail.com","     ABC    def    gh   ","lap trinh 123","helloolleh","hello",]
 
 /**
  * 8. Nhập vào từ bàn phím một chuỗi st có kích thước tối đa 30. Tìm những chuỗi trong mảng a có kích thước bằng chuỗi st. Tìm những chuỗi trong mảng a có chứa chuỗi st.
@@ -243,21 +271,26 @@ function timChuoi(array $a)
 {
     do {
         $st = readline("Nhập chuỗi st:");
-    } while (strlen($st) > 30);
+    } while (strlen($st) > 30 || strlen($st) < 0);
     echo "Các chuỗi của mảng a có kích thước bằng chuỗi st: \n";
     for ($i = 0; $i < count($a); $i++) {
         $size[$i] = strlen($a[$i]);
         if ($size[$i] == strlen($st)) {
-            echo "$a[$i] \n";
+            echo "\"$a[$i]\" \n";
         }
     }
     echo "Các chuỗi của mảng a có chứa chuỗi st: \n";
     for ($i = 0; $i < count($a); $i++) {
         if (strstr($a[$i], $st) != null) {
-            echo "$a[$i] \n";
+            echo "\"$a[$i]\" \n";
         }
     }
 }
+//expect: st="trinh"
+// Các chuỗi của mảng a có kích thước bằng chuỗi st:
+// "hello"
+// Các chuỗi của mảng a có chứa chuỗi st:
+// "lap trinh 123"
 
 /**
  * 9. Tìm những chuỗi có tính đối xứng trong mảng a.
@@ -270,10 +303,11 @@ function checkDoiXung(array $a)
         $str1 = substr($a[$i], 0, strlen($a[$i]) / 2);
         $str2 = substr($a[$i], -strlen($a[$i]) / 2,);
         if ($str1 == strrev($str2)) {
-            echo "$a[$i] \n";
+            echo "\"$a[$i]\" \n";
         }
     }
 }
+//expect: helloolleh
 
 /**
  * 10. Hiển thị những chuỗi là địa chỉ email chuẩn (ví dụ "abc@def.com").
@@ -289,6 +323,7 @@ function checkEmail(array $a)
     }
     return;
 }
+//expect: "abc@gmail.com"
 
 /**
  * 11. Tìm những chuỗi có chứa ký tự số.
@@ -307,6 +342,7 @@ function kiemTraKySo(array $a)
     }
     return;
 }
+//expect: "lap trinh 123"
 
 /**
  * 12. Tìm những chuỗi có chứa ký tự in HOA.
@@ -325,6 +361,7 @@ function kiemTraInHoa(array $a)
     }
     return;
 }
+//expect: "     ABC    def    gh   "
 
 /**
  * 13. Nhập từ bàn phím một ký tự c bất kỳ. Tìm những chuỗi có chứa ký tự c.
@@ -338,10 +375,14 @@ function timKyTu(array $a)
     } while (strlen($c) != 1);
     for ($i = 0; $i < count($a); $i++) {
         if (strchr($a[$i], $c) != null) {
-            echo $a[$i] . "\n";
+            echo "\"$a[$i]\" \n";
         }
     }
 }
+//  $c="i"
+// expect:  "abc@gmail.com"
+//          "lap trinh 123"
+
 
 /**
  * 14. Mỗi chuỗi trong mảng a có bao nhiêu từ?
@@ -351,10 +392,24 @@ function timKyTu(array $a)
 function demTu(array $a)
 {
     for ($i = 0; $i < count($a); $i++) {
-        echo "Chuỗi \"$a[$i]\" có " . str_word_count($a[$i]) . " từ \n";
+        $count[$i] = 0;
+        for ($j = 0; $j < strlen($a[$i]) - 1; $j++) {
+            if ($a[$i][$j] == ' ' && $a[$i][$j + 1] != ' ') {
+                $count[$i]++;
+            }
+        }
+        if ($a[$i][0] != ' ') {
+            $count[$i]++;
+        }
+        echo "Chuỗi \"$a[$i]\" có $count[$i] từ \n";
     }
     return;
 }
+//expect:   Chuỗi "hello" có 1 từ
+//          Chuỗi "abc@gmail.com" có 1 từ
+//          Chuỗi "lap trinh 123" có 3 từ
+//          Chuỗi "helloolleh" có 1 từ
+//          Chuỗi "     ABC    def    gh   " có 3 từ
 
 /**
  * 15. Nhập vào một ký tự rồi chèn ký tự đó vào vị trí thứ 5 của chuỗi cuối cùng.
@@ -378,6 +433,8 @@ function themKyTu(array $a)
     }
     return;
 }
+// $c= "2"
+//expect: a = ["hello","abc@gmail.com","lap trinh 123","helloolleh","    2 ABC    def    gh   ",]
 
 /**
  * 16. Nối tất cả các chuỗi và in ra.
@@ -390,8 +447,9 @@ function noiChuoi(array $a): string
     for ($i = 0; $i < count($a); $i++) {
         $result .= $a[$i];
     }
-    return "$result";
+    return "\"$result\"";
 }
+//expect: "helloabc@gmail.comlap trinh 123helloolleh     ABC    def    gh   "
 
 /**
  * 17. Hiển thị những chuỗi chứa chuỗi đầu tiên
@@ -402,11 +460,12 @@ function strContainFirstStr(array $a)
 {
     for ($i = 1; $i < count($a); $i++) {
         if (strstr($a[$i], $a[0]) != null) {
-            echo $a[$i] . "\n";
+            echo "\"$a[$i]\" \n";
         }
     }
     return;
 }
+//expect : "helloolleh"
 
 /**
  * 18. Kiểm tra xem chuỗi đầu tiên có bắt đầu bằng chuỗi "hello" không.
@@ -421,6 +480,7 @@ function checkStart(array $a): bool
     }
     return false;
 }
+//expect: true
 
 /**
  * 19. Tính giá trị trung bình theo vị trí ký tự trong bảng mã ASCII của từng chuỗi.
@@ -435,9 +495,14 @@ function tinhTBKyTu(array $a)
             $tong += ord($a[$i][$j]);
         }
         $tb = $tong / strlen($a[$i]);
-        echo "Giá trị trung bình theo vị trí ký tự chuỗi $a[$i] là: $tb \n";
+        echo "Giá trị trung bình theo vị trí ký tự chuỗi \"$a[$i]\" là: $tb \n";
     }
 }
+// Giá trị trung bình theo vị trí ký tự chuỗi "hello" là: 106.4
+// Giá trị trung bình theo vị trí ký tự chuỗi "abc@gmail.com" là: 95.769230769231
+// Giá trị trung bình theo vị trí ký tự chuỗi "lap trinh 123" là: 83.076923076923
+// Giá trị trung bình theo vị trí ký tự chuỗi "helloolleh" là: 106.4
+// Giá trị trung bình theo vị trí ký tự chuỗi "     ABC    def    gh   " là: 50.833333333333
 
 /**
  * 20. Nhập vào một độ dài xác định và in ra những chuỗi có độ dài bằng độ dài xác định đó.
@@ -451,11 +516,13 @@ function strLength(array $a)
     } while ($l <= 0);
     for ($i = 0; $i < count($a); $i++) {
         if (strlen($a[$i]) == $l) {
-            echo "$a[$i] \n";
+            echo "\"$a[$i]\" \n";
         }
     }
     return;
 }
+// $l=10
+// expect: "helloolleh"
 
 /**
  * 21. Đếm số từ trong chuỗi thứ N-1
@@ -466,6 +533,7 @@ function demTuChuoiN(array $a): int
 {
     return str_word_count($a[count($a) - 2]);
 }
+//expect: 1
 
 /**
  * 22. Chuyển chuỗi thứ hai thành chuỗi in hoa.
@@ -477,6 +545,7 @@ function chuoiInHoa(array $a)
     $a[1] = strtoupper($a[1]);
     output($a);
 }
+//expect: a = ["hello","ABC@GMAIL.COM","lap trinh 123","helloolleh","     ABC    def    gh   ",]
 
 /**
  * 23. Cắt ký tự trắng ở cuối chuỗi cuối cùngs
@@ -489,6 +558,7 @@ function catCuoiChuoi(array $a)
     output($a);
     return;
 }
+// expect: a = ["hello","abc@gmail.com","lap trinh 123","helloolleh","     ABC    def    gh",]
 
 /**
  * 24. Cắt ký tự trắng ở đầu chuỗi cuối cùng
@@ -501,6 +571,7 @@ function catDauChuoi(array $a)
     output($a);
     return;
 }
+// expect: a = ["hello","abc@gmail.com","lap trinh 123","helloolleh","ABC    def    gh   ",]
 
 /**
  * 25. Cắt ký tự trắng thừa ở giữa chuỗi cuối cùng
@@ -518,9 +589,11 @@ function catGiuaChuoi(array $a)
             $laststr[strlen($laststr) - 1] = "\0";
         }
     }
+    $a[count($a) - 1] = $laststr;
     output($a);
     return;
 }
+//expect: a = ["hello","abc@gmail.com","lap trinh 123","helloolleh"," ABC def gh ",]
 
 
 $chon = 1;
