@@ -50,7 +50,7 @@ class SoHoc
         return $this->number1 / $this->number2;
     }
 }
-if (isset($_POST['number1']) && isset($_POST['number1'])) {
+if (isset($_POST['number1']) && isset($_POST['number2'])) {
     $data = new SoHoc();
     $data->inputInfo();
     $data->printInfo();
