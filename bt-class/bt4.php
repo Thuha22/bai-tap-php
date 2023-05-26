@@ -8,7 +8,7 @@
     Viết chương trình xem học viên đó có được học bổng không.
 -->
 <?php
-class V1Study
+class HocVien
 {
     var $khoaHoc;
     var $diem;
@@ -16,20 +16,19 @@ class V1Study
     var $lanThi;
     function inputInfo()
     {
-        $this->khoaHoc = $_POST['khoahoc'];
-        $this->diem = $_POST['diem'];
-        $this->viPham = $_POST['vipham'];
-        $this->lanThi = $_POST['lanthi'];
+        $this->khoaHoc =  strtoupper(readline("Học viên khóa học:"));
+        $this->diem = readline("Điểm tổng kết:");
+        $this->viPham =  strtoupper(readline("Vi phạm:"));
+        $this->lanThi = readline("Thi lần:");
     }
 
     function showInfo()
     {
-        echo "Học viên khóa học HDSE: " . ($this->khoaHoc ? 'Có' : 'Không') . "<br>";
-        echo "Điểm tổng kết: " . $this->diem . "<br>";
-        echo "Vi phạm: " . ($this->viPham ? 'Có' : 'Không') . "<br>";
-        echo "Thi lần: " . $this->lanThi . "<br>";
-        echo "Học bổng: " . ($this->hocBong() ? 'Có' : 'Không') . "<br>";
-        echo "<hr>";
+        echo "========================================\n";
+        echo "Học viên khóa học: " . $this->khoaHoc . "\n";
+        echo "Điểm tổng kết: " . $this->diem . "\n";
+        echo "Vi phạm: " . $this->viPham  . "\n";
+        echo "Thi lần: " . $this->lanThi . "\n";
     }
     function hocBong()
     {
@@ -37,34 +36,15 @@ class V1Study
         $diem = $this->diem;
         $viPham = $this->viPham;
         $lanThi = $this->lanThi;
-        if ($khoaHoc == "true" && $diem >= 75 && $viPham == "false" && $lanThi == 1) {
-            return true;
+        if ($khoaHoc == "HDSE" && $diem >= 75 && $viPham == "KHONG" && $lanThi == 1) {
+            return "Được học bổng";
         }
-        return false;
+        return "Không được học bổng";
     }
 }
-if (isset($_POST['khoahoc'])) {
-    $data = new V1Study();
-    $data->inputInfo();
-    $data->showInfo();
-    $data->hocBong();
-}
-?>
 
-<section>
-    <form method="post">
-        <section>
-            <label> Học viên khóa học HDSE: </label>
-            <input type="radio" name="khoahoc" value="true">Có
-            <input type="radio" name="khoahoc" value="false">Không
-        </section>
-        <section><label> Điểm tổng kết(%): </label><input type="number" name="diem" max=100 min=0></section>
-        <section>
-            <label> Vi phạm: </label>
-            <input type="radio" name="vipham" value="true">Có
-            <input type="radio" name="vipham" value="false">Không
-        </section>
-        <section><label> Thi lần: </label><input type="number" name="lanthi" min=1></section>
-        <input type="submit" value="Submit">
-    </form>
-</section>
+$data = new HocVien();
+$data->inputInfo();
+$data->showInfo();
+echo $data->hocBong();
+?>

@@ -18,44 +18,39 @@ class Student
     var $class;
     function inputInfo()
     {
-        $this->code = $_POST['code'];
-        $this->score = $_POST['score'];
-        $this->age = $_POST['age'];
-        $this->class = $_POST['class'];
+        do {
+            $this->code = readline("Mã số sinh viên:");
+        } while (strlen($this->code) != 8);
+        do {
+            $this->score = readline("Điểm trung bình:");
+        } while ($this->score < 0.0 || $this->score > 10.0);
+        do {
+            $this->age = readline("Tuổi:");
+        } while ($this->age < 18);
+        do {
+            $this->class = readline("Lớp:");
+        } while (($this->class)[0] != "A" && ($this->class)[0] != "C");
     }
 
     function showInfo()
     {
-        echo "Mã số sinh viên: " . $this->code . "<br>";
-        echo "Điểm trung bình: " . $this->score . "<br>";
-        echo "Tuổi: " . $this->age . "<br>";
-        echo "Lớp " . $this->class . "<br>";
-        echo "Học bổng: " . ($this->hocBong() ? 'Có' : 'Không') . "<br>";
-        echo "<hr>";
+        echo "========================================\n";
+        echo "Mã số sinh viên: " . $this->code . "\n";
+        echo "Điểm trung bình: " . $this->score . "\n";
+        echo "Tuổi: " . $this->age . "\n";
+        echo "Lớp " . $this->class . "\n";
     }
     function hocBong()
     {
         $score = $this->score;
         if ($score >= 8.0) {
-            return true;
+            return "Học bổng: Có";
         }
-        return false;
+        return "Học bổng: Không";
     }
 }
-if (isset($_POST['code'])) {
-    $data = new Student();
-    $data->inputInfo();
-    $data->showInfo();
-    $data->hocBong();
-}
-?>
 
-<section>
-    <form method="post">
-        <section><label> Mã số sinh viên: </label><input type="text" name="code" maxlength="8" minlength="8"></section>
-        <section><label> Điểm trung bình: </label><input type="number" step="0.1" name="score" max=10.0 min=0.0></section>
-        <section><label> Tuổi : </label><input type="number" name="age" min="18"></section>
-        <section><label> Lớp: </label><input type="text" name="class" pattern="[\+A|C]\d{1,10}"></section>
-        <input type="submit" value="Submit">
-    </form>
-</section>
+$data = new Student();
+$data->inputInfo();
+$data->showInfo();
+echo $data->hocBong();

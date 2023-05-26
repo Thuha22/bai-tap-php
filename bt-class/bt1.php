@@ -15,53 +15,57 @@
 <?php
 class SoHoc
 {
-    var $number1;
-    var $number2;
+    public $number1;
+    public $number2;
+    public function getNumber1()
+    {
+        return $this->number1;
+    }
+    public function setNumber1($number1)
+    {
+        $this->number1 = $number1;
+    }
+    public function getNumber2()
+    {
+        return $this->number2;
+    }
+    public function setNumber2($number2)
+    {
+        $this->number2 = $number2;
+    }
     function inputInfo()
     {
-        $this->number1 = $_POST['number1'];
-        $this->number2 = $_POST['number2'];
+        $this->number1 = readline("Number 1: ");
+        $this->number2 = readline("Number 2: ");
     }
 
     function printInfo()
     {
-        echo "Số thứ nhất: " . $this->number1 . "<br>";
-        echo "Số thứ 2: " . $this->number2 . "<br>";
-        echo "Tổng: " . $this->addition() . "<br>";
-        echo "Hiệu: " . $this->subtract() . "<br>";
-        echo "Tích: " . $this->multi() . "<br>";
-        echo "Thương: " . $this->division() . "<br>";
-        echo "<hr>";
+        echo "Số thứ nhất: " . $this->number1 . "\n";
+        echo "Số thứ 2: " . $this->number2 . "\n";
     }
     function addition()
     {
-        return $this->number1 + $this->number2;
+        return  "Tổng:" . ($this->number1 + $this->number2);
     }
     function subtract()
     {
-        return $this->number1 - $this->number2;
+        return "\nHiệu: " . ($this->number1 - $this->number2);
     }
     function multi()
     {
-        return $this->number1 * $this->number2;
+        return "\nTích: " . $this->number1 * $this->number2;
     }
     function division()
     {
-        return $this->number1 / $this->number2;
+        return "\nThương: " . $this->number1 / $this->number2;
     }
 }
-if (isset($_POST['number1']) && isset($_POST['number2'])) {
-    $data = new SoHoc();
-    $data->inputInfo();
-    $data->printInfo();
-}
 
-?>
-
-<section>
-    <form method="post">
-        <section><label> Number 1: </label><input type="number" name="number1"></section>
-        <section><label> Number 2: </label><input type="number" name="number2"></section>
-        <input type="submit" value="Submit">
-    </form>
-</section>
+$data = new SoHoc();
+$data->inputInfo();
+$data->printInfo();
+echo $data->addition();
+echo $data->subtract();
+echo $data->multi();
+echo $data->division();

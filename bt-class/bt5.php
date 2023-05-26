@@ -1,3 +1,12 @@
+<!--
+    Tạo class SoNguyenTo gồm:
+    Thuộc tính a lưu trữ 1 số nguyên tố.
+    Constructor 1 tham số: __construct__(x). Nếu x là số nguyên tố thì lưu x vào biến a. Nếu không thì in ra màn hình: x không phải là số nguyên tố, không lưu trữ.
+    Phương thức isSoNguyenTo(x) kiểm tra số x có phải số nguyên tố không.
+    Phương thức timSoNguyenToTiepTheo() tìm và trả về số nguyên tố liền sau số nguyên tố a.
+    Các phương thức get/set biến a. Nếu tham số truyền vào phương thức set là 1 số nguyên tố thì mới lưu vào thuộc tính a. Nếu không thì hiển thị thông báo: Không set.
+    Khai báo 1 đối tượng thuộc class SoNguyenTo và test các phương thức đã viết.
+-->
 <?php
 class SoNguyenTo
 {
@@ -12,14 +21,14 @@ class SoNguyenTo
     }
     public function __construct($x)
     {
-        if ($this->isSNT($x) == 1) {
+        if ($this->isSoNguyenTo($x) == 1) {
             $this->a = $x;
-            $this->nextSNT();
+            $this->timSoNguyenToTiepTheo();
         } else {
             echo "x không phải số nguyên tố, không lưu trữ";
         }
     }
-    public function isSNT($x)
+    public function isSoNguyenTo($x)
     {
         $laSNT = 1;
         if ($x < 2) {
@@ -31,13 +40,13 @@ class SoNguyenTo
                 break;
             }
         }
-        return $laSNT = 1;
+        return $laSNT;
     }
 
-    public function nextSNT()
+    public function timSoNguyenToTiepTheo()
     {
         $next = $this->a + 1;
-        while ($this->isSNT($next) != 1) {
+        while ($this->isSoNguyenTo($next) != 1) {
             $next++;
         }
         echo "Số nguyên tố tiếp theo sau $this->a là: $next";
@@ -45,4 +54,4 @@ class SoNguyenTo
 }
 
 $obj = new SoNguyenTo(5);
-echo  $obj->getA();
+//expect: Số nguyên tố tiếp theo sau 5 là: 7 
