@@ -20,22 +20,21 @@ class NhanVien
     var $hours;
     function inputInfo()
     {
-        $this->name = $_POST['name'];
-        $this->age = $_POST['age'];
-        $this->adress = $_POST['adress'];
-        $this->salary = $_POST['salary'];
-        $this->hours = $_POST['hours'];
+        $this->name = readline("Tên: ");
+        $this->age = readline("Tuổi: ");
+        $this->adress = readline("Địa chỉ: ");
+        $this->salary = readline("Tiền lương: ");
+        $this->hours = readline("Tổng số giờ làm: ");
     }
 
     function printInfo()
     {
-        echo "Tên: " . $this->name . "<br>";
-        echo "Tuổi: " . $this->age . "<br>";
-        echo "Địa chỉ: " . $this->adress . "<br>";
-        echo "Tiền lương: " . number_format($this->salary, '0', '', '.') . "<br>";
-        echo "Tổng số giờ làm: " . $this->hours . "<br>";
-        echo "Tiền thưởng: " . number_format($this->bonus(), '0', '', '.') . "<br>";
-        echo "<hr>";
+        echo "========================================\n";
+        echo "Tên: " . $this->name . "\n";
+        echo "Tuổi: " . $this->age . "\n";
+        echo "Địa chỉ: " . $this->adress . "\n";
+        echo "Tiền lương: " . number_format($this->salary, '0', '', '.') . "\n";
+        echo "Tổng số giờ làm: " . $this->hours . "\n";
     }
     function bonus()
     {
@@ -48,25 +47,11 @@ class NhanVien
         } else {
             $bonus = 0;
         }
-        return $bonus;
+        return "Tiền thưởng: " . number_format($bonus, '0', '', '.');
     }
 }
-if (isset($_POST['name']) && isset($_POST['age'])) {
-    $data = new NhanVien();
-    $data->inputInfo();
-    $data->printInfo();
-    $data->bonus();
-}
 
-?>
-
-<section>
-    <form method="post">
-        <section><label> Tên: </label><input type="text" name="name"></section>
-        <section><label> Tuổi : </label><input type="number" name="age"></section>
-        <section><label> Địa chỉ: </label><input type="text" name="adress"></section>
-        <section><label> Tiền lương: </label><input type="number" name="salary"></section>
-        <section><label> Tổng số giờ làm: </label><input type="number" name="hours"></section>
-        <input type="submit" value="Submit">
-    </form>
-</section>
+$data = new NhanVien();
+$data->inputInfo();
+$data->printInfo();
+echo $data->bonus();
