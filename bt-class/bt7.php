@@ -9,12 +9,23 @@
 <?php
 class Rectangle
 {
-    public $dai;
-    public $rong;
-    public function inputValue()
+    private $dai;
+    private $rong;
+    public function getDai()
     {
-        $this->dai = readline("Nhập chiều dài:");
-        $this->rong = readline("Nhập chiều rộng:");
+        return $this->dai;
+    }
+    public function setDai($dai)
+    {
+        $this->dai = $dai;
+    }
+    public function getRong()
+    {
+        return $this->rong;
+    }
+    public function setRong($rong)
+    {
+        $this->rong = $rong;
     }
     public function tinhChuVi()
     {
@@ -33,7 +44,9 @@ class Rectangle
 }
 
 $data = new Rectangle();
-$data->inputValue();
+$data->setDai(readline("Nhập chiều dài:"));
+$data->setRong(readline("Nhập chiều rộng:"));
+// $data->inputValue($dai, $rong);
 echo "========================================";
 echo "\nChu vi: " .  $data->tinhChuVi();
 echo "\nDiện tích:" . $data->tinhDienTich();
