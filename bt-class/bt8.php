@@ -15,11 +15,6 @@ class Fraction
 {
     public $tu;
     public $mau;
-    // public function __construct($tu, $mau)
-    // {
-    //     $this->tu = $tu;
-    //     $this->mau = $mau;
-    // }
 
     public function getTu()
     {
@@ -44,106 +39,132 @@ class Fraction
         $this->mau = readline("Nhập mẫu phân số thứ nhất:");
     }
 
-    function printInfo()
+    public function printInfo()
     {
-        // echo "Phân số thứ nhất: " . $this->tu . '/' . $this->mau . "\n";
-        // echo "Phân số thứ nhất rút gọn: " . $this->rutGon() . "\n";
-        // echo "Phân số thứ nhất nghịch đảo: " . $this->nghichDao() . "\n";
-        // echo "Tổng:" . $this->add() . "\n";
-        // echo "Hiệu:" . $this->sub() . "\n";
-        // echo "Tích:" . $this->mul() . "\n";
-        // echo "Thương:" . $this->div() . "\n";
-        var_dump($this);
-        echo $this->tu . '/' . $this->mau . "\n";
-    }
-
-    function rutGon()
-    {
-        $tu = $this->tu;
-        $mau = $this->mau;
-
-        while ($mau != 0) {
-            $sochia = $mau;
-            $mau = $tu % $mau;
-            $tu = $sochia;
+        if ($this->tu == $this->mau) {
+            echo 1 . "\n";
+        } elseif ($this->tu == 0) {
+            echo 0 . "\n";
+        } else {
+            echo $this->tu . '/' . $this->mau . "\n";
         }
-        $tu = $this->tu;
-        $mau = $this->mau;
-        return ($tu / $sochia) . '/' . ($mau / $sochia);
     }
 
-    function nghichDao()
+    public function timUCLN(int $a, int $b)
     {
-        $tu = $this->tu;
-        $mau = $this->mau;
-        $temp = $tu;
-        $tu = $mau;
-        $mau = $temp;
-        return $tu . '/' . $mau;
+        if ($b == 0) {
+            return $a;
+        }
+        while ($b != 0) {
+            $sochia = $b;
+            $b = $a % $b;
+            $a = $sochia;
+        }
+        return $a;
     }
-
-    function add($ps1, $ps2)
+    public function rutGon($ps1)
     {
         $kq = new Fraction();
-        // $tu = $this->tu;
-        // $mau = $this->mau;
-        $kq->tu = $ps1->tu * $ps2->mau + $ps2->tu * $ps1->mau;
-        $kq->mau = $ps1->mau * $ps2->mau;
-        // var_dump($kq);
+        $uc = $ps1->timUCLN($ps1->tu, $ps1->mau);
+        $kq->tu = $ps1->tu / $uc;
+        $kq->mau = $ps1->mau / $uc;
         return $kq;
-        // $tu2 = $this->tu2;
-        // $mau2 = $this->mau2;
-        // return (($tu * $mau2) + ($tu2 * $mau)) . '/' . ($mau * $mau2);
     }
-    // function sub()
-    // {
-    //     $tu = $this->tu;
-    //     $mau = $this->mau;
-    //     // $tu2 = $this->tu2;
-    //     // $mau2 = $this->mau2;
-    //     return (($tu * $mau2) - ($tu2 * $mau)) . '/' . ($mau * $mau2);
-    // }
-    // function mul()
-    // {
-    //     $tu = $this->tu;
-    //     $mau = $this->mau;
-    //     // $tu2 = $this->tu2;
-    //     // $mau2 = $this->mau2;
-    //     return ($tu * $tu2) . '/' . ($mau * $mau2);
-    // }
-    // function div()
-    // {
-    //     $tu = $this->tu;
-    //     $mau = $this->mau;
-    //     // $tu2 = $this->tu2;
-    //     // $mau2 = $this->mau2;
-    //     return ($tu * $mau2) . '/' . ($mau * $tu2);
-    // }
+
+    public function nghichDao($ps1)
+    {
+        $kq = new Fraction();
+        $kq->tu = $ps1->mau;
+        $kq->mau = $ps1->tu;
+        return $kq;
+    }
+
+    public function add($ps2)
+    {
+        $kq = new Fraction();
+        $tu = $this->tu;
+        $mau = $this->mau;
+        $kq->tu = $tu * $ps2->mau + $ps2->tu * $mau;
+        $kq->mau = $mau * $ps2->mau;
+        return $kq->rutGon($kq);
+    }
+    public function sub($ps2)
+    {
+        $kq = new Fraction();
+        $tu = $this->tu;
+        $mau = $this->mau;
+        $kq->tu = $tu * $ps2->mau - $ps2->tu * $mau;
+        $kq->mau = $mau * $ps2->mau;
+        return $kq->rutGon($kq);
+    }
+    public function mul($ps2)
+    {
+        $kq = new Fraction();
+        $tu = $this->tu;
+        $mau = $this->mau;
+        $kq->tu = $tu *  $ps2->tu;
+        $kq->mau = $mau * $ps2->mau;
+        return $kq->rutGon($kq);
+    }
+    public function div($ps2)
+    {
+        $kq = new Fraction();
+        $tu = $this->tu;
+        $mau = $this->mau;
+        $kq->tu = $tu *  $ps2->mau;
+        $kq->mau = $mau * $ps2->tu;
+        // return $kq;
+        return $kq->rutGon($kq);
+    }
 }
 
 
-// $data = new Fraction();
-// $data->inputInfo();
 class Program
 {
-    function main()
+    public function main()
     {
         $ps1 = new Fraction();
         $ps2 = new Fraction();
         $tong = new Fraction();
 
+        //Nhập dữ liệu
         printf("Nhập dữ liệu phân số 1: \n");
         $ps1->inputInfo();
         printf("Nhập dữ liệu phân số 2: \n");
         $ps2->inputInfo();
+
+        $tong = $ps1->add($ps2);
+        $hieu = $ps1->sub($ps2);
+        $tich = $ps1->mul($ps2);
+        $thuong = $ps1->div($ps2);
+
+        //Hiển thị
         printf("Phân số 1 vừa nhập là: ");
         $ps1->printInfo();
         printf("Phân số 2 vừa nhập là: ");
         $ps2->printInfo();
-        $tong->add($ps1, $ps2);
+        printf("Tổng 2 phân số: ");
         $tong->printInfo();
+        printf("Hiệu 2 phân số: ");
+        $hieu->printInfo();
+        printf("Tích 2 phân số: ");
+        $tich->printInfo();
+        printf("Thương 2 phân số: ");
+        $thuong->printInfo();
     }
 }
 
 $data = new Program();
 $data->main();
+// Nhập dữ liệu phân số 1:
+// Nhập tử phân số thứ nhất:2
+// Nhập mẫu phân số thứ nhất:5
+// Nhập dữ liệu phân số 2:
+// Nhập tử phân số thứ nhất:3
+// Nhập mẫu phân số thứ nhất:4
+// Phân số 1 vừa nhập là: 2/5
+// Phân số 2 vừa nhập là: 3/4
+// Tổng 2 phân số: 23/20
+// Hiệu 2 phân số: 7/-20
+// Tích 2 phân số: 3/10
+// Thương 2 phân số: 8/15
