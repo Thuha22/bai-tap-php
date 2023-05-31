@@ -16,6 +16,47 @@ class Student
     var $score;
     var $age;
     var $class;
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+    public function setCode($code)
+    {
+        // $this->code = $code;
+        // do {
+        if (strlen($code) == 8) {
+            $this->code = $code;
+        } else {
+            $this->setCode($code);
+        }
+        // } while (strlen($code) != 8);
+    }
+    public function getScore()
+    {
+        return $this->score;
+    }
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+    public function getAge()
+    {
+        return $this->age;
+    }
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+    public function getClass()
+    {
+        return $this->class;
+    }
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
     function inputInfo()
     {
         do {
@@ -51,6 +92,14 @@ class Student
 }
 
 $data = new Student();
-$data->inputInfo();
-$data->showInfo();
+// $data->inputInfo();
+// $data->showInfo();
+// do {
+//     // if (strlen($code) == 8) {
+//     $data->setCode(readline("Mã số sinh viên:"));
+//     // }
+// } while (strlen($data->code) != 8);
+$data->setCode(readline("Mã số sinh viên:"));
+echo "========================================\n";
+echo "Mã số sinh viên: " . $data->getCode() . "\n";
 echo $data->hocBong();

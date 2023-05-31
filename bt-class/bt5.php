@@ -21,37 +21,50 @@ class SoNguyenTo
     }
     public function __construct($x)
     {
-        if ($this->isSoNguyenTo($x) == 1) {
-            $this->a = $x;
-            $this->timSoNguyenToTiepTheo();
+        $this->a = $x;
+    }
+    public function isSoNguyenTo($x)
+    {
+        if ($x < 2) {
+            return false;
+        }
+        for ($i = 2; $i <= sqrt($x); $i++) {
+            if ($x % $i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class SoNguyenToTiep extends SoNguyenTo
+{
+    public function timSoNguyenToTiepTheo()
+    {
+        $next = $this->getA() + 1;
+        while ($this->isSoNguyenTo($next) == false) {
+            $next++;
+        }
+        return $next;
+    }
+}
+class Show
+{
+    function main()
+    {
+        $x = 5;
+        $snt = new SoNguyenTo($x);
+        $nextsnt = new SoNguyenToTiep($x);
+        if ($snt->isSoNguyenTo($x)) {
+            $snt->__construct($x);
+            echo "Số nguyên tố tiếp theo sau " . $snt->getA() . " là: " . $nextsnt->timSoNguyenToTiepTheo();
         } else {
             echo "x không phải số nguyên tố, không lưu trữ";
         }
     }
-    public function isSoNguyenTo($x)
-    {
-        $laSNT = 1;
-        if ($x < 2) {
-            $laSNT = 0;
-        }
-        for ($i = 2; $i <= sqrt($x); $i++) {
-            if ($x % $i == 0) {
-                $laSNT = 0;
-                break;
-            }
-        }
-        return $laSNT;
-    }
-
-    public function timSoNguyenToTiepTheo()
-    {
-        $next = $this->a + 1;
-        while ($this->isSoNguyenTo($next) != 1) {
-            $next++;
-        }
-        echo "Số nguyên tố tiếp theo sau $this->a là: $next";
-    }
 }
 
-$obj = new SoNguyenTo(5);
+$obj = new Show();
+$obj->main();
+
 //expect: Số nguyên tố tiếp theo sau 5 là: 7 

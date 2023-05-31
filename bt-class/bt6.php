@@ -60,6 +60,7 @@ class Triangle
     }
     function tinhDienTich(): float
     {
+
         $a = $this->a;
         $b = $this->b;
         $c = $this->c;
@@ -73,10 +74,16 @@ $data = new Triangle();
 $data->setA(readline("Cạnh a:"));
 $data->setB(readline("Cạnh b:"));
 $data->setC(readline("Cạnh c:"));
+
 echo "========================================\n";
 echo ($data->isTamGiac() ? "a, b, c là 3 cạnh của tam giác" : "a, b, c không phải 3 cạnh của tam giác") . "\n";
-echo "Chu vi:" . $data->tinhChuVi() . "\n";
-echo "Diện tích:" . $data->tinhDienTich() . "\n";
+if ($data->isTamGiac()) {
+    echo "Chu vi:" . $data->tinhChuVi() . "\n";
+}
+if ($data->isTamGiac()) {
+    echo "Diện tích:" . $data->tinhDienTich() . "\n";
+}
+
 // Cạnh a:3
 // Cạnh b:4
 // Cạnh c:5
