@@ -14,37 +14,65 @@ class HocVien
     var $diem;
     var $viPham;
     var $lanThi;
-    function inputInfo()
+    public function getKhoa()
     {
-        $this->khoaHoc =  strtoupper(readline("Học viên khóa học:"));
-        $this->diem = readline("Điểm tổng kết:");
-        $this->viPham =  strtoupper(readline("Vi phạm:"));
-        $this->lanThi = readline("Thi lần:");
+        return $this->khoaHoc;
+    }
+    public function setKhoa($khoaHoc)
+    {
+        $this->khoaHoc = $khoaHoc;
+    }
+    public function getDiem()
+    {
+        return $this->diem;
+    }
+    public function setDiem($diem)
+    {
+        $this->diem = $diem;
+    }
+    public function getViPham()
+    {
+        return $this->viPham;
+    }
+    public function setViPham($viPham)
+    {
+        $this->viPham = $viPham;
+    }
+    public function getLanThi()
+    {
+        return $this->lanThi;
+    }
+    public function setLanThi($lanThi)
+    {
+        $this->lanThi = $lanThi;
     }
 
-    function showInfo()
-    {
-        echo "========================================\n";
-        echo "Học viên khóa học: " . $this->khoaHoc . "\n";
-        echo "Điểm tổng kết: " . $this->diem . "\n";
-        echo "Vi phạm: " . $this->viPham  . "\n";
-        echo "Thi lần: " . $this->lanThi . "\n";
-    }
-    function hocBong()
+    function hocBong(): bool
     {
         $khoaHoc = $this->khoaHoc;
         $diem = $this->diem;
         $viPham = $this->viPham;
         $lanThi = $this->lanThi;
         if ($khoaHoc == "HDSE" && $diem >= 75 && $viPham == "KHONG" && $lanThi == 1) {
-            return "Được học bổng";
+            return true;
         }
-        return "Không được học bổng";
+        return false;
     }
 }
 
 $data = new HocVien();
-$data->inputInfo();
-$data->showInfo();
-echo $data->hocBong();
+
+//Nhập dữ liệu
+$data->setKhoa(strtoupper(readline("Học viên khóa học:")));
+$data->setDiem(readline("Điểm tổng kết:"));
+$data->setViPham(strtoupper(readline("Vi phạm:")));
+$data->setLanThi(readline("Thi lần:"));
+
+//Hiển thị
+echo "========================================\n";
+echo "Học viên khóa học: " . $data->getKhoa() . "\n";
+echo "Điểm tổng kết: " . $data->getDiem() . "\n";
+echo "Vi phạm: " . $data->getViPham() . "\n";
+echo "Thi lần: " . $data->getLanThi() . "\n";
+echo $data->hocBong() ? "Được học bổng" : "Không được học bổng";
 ?>

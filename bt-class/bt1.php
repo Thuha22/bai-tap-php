@@ -15,8 +15,8 @@
 <?php
 class SoHoc
 {
-    public $number1;
-    public $number2;
+    private $number1;
+    private $number2;
     public function getNumber1()
     {
         return $this->number1;
@@ -33,39 +33,40 @@ class SoHoc
     {
         $this->number2 = $number2;
     }
-    function inputInfo()
+    function addition(): float
     {
-        $this->number1 = readline("Number 1: ");
-        $this->number2 = readline("Number 2: ");
+        return $this->number1 + $this->number2;
     }
-
-    function printInfo()
+    function subtract(): float
     {
-        echo "Số thứ nhất: " . $this->number1 . "\n";
-        echo "Số thứ 2: " . $this->number2 . "\n";
+        return $this->number1 - $this->number2;
     }
-    function addition()
+    function multi(): float
     {
-        return  "Tổng:" . ($this->number1 + $this->number2);
+        return  $this->number1 * $this->number2;
     }
-    function subtract()
+    function division(): float
     {
-        return "\nHiệu: " . ($this->number1 - $this->number2);
-    }
-    function multi()
-    {
-        return "\nTích: " . $this->number1 * $this->number2;
-    }
-    function division()
-    {
-        return "\nThương: " . $this->number1 / $this->number2;
+        return $this->number1 / $this->number2;
     }
 }
 
 $data = new SoHoc();
-$data->inputInfo();
-$data->printInfo();
-echo $data->addition();
-echo $data->subtract();
-echo $data->multi();
-echo $data->division();
+$data->setNumber1(readline("Number 1:"));
+$data->setNumber2(readline("Number 2:"));
+echo "Số thứ nhất: " . $data->getNumber1();
+echo "\nSố thứ hai: " . $data->getNumber2();
+echo "\nTổng:" . $data->addition();
+echo "\nHiệu: " . $data->subtract();
+echo "\nTích: " . $data->multi();
+echo "\nThương: " . $data->division();
+
+//expect:
+// Number 1:2
+// Number 2:4
+// Số thứ nhất: 2
+// Số thứ hai: 4
+// Tổng:6
+// Hiệu: -2
+// Tích: 8
+// Thương: 0.5

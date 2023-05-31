@@ -13,30 +13,53 @@
 <?php
 class NhanVien
 {
-    var $name;
-    var $age;
-    var $adress;
-    var $salary;
-    var $hours;
-    function inputInfo()
+    private $name;
+    private $age;
+    private $adress;
+    private $salary;
+    private $hours;
+    public function getName()
     {
-        $this->name = readline("Tên: ");
-        $this->age = readline("Tuổi: ");
-        $this->adress = readline("Địa chỉ: ");
-        $this->salary = readline("Tiền lương: ");
-        $this->hours = readline("Tổng số giờ làm: ");
+        return $this->name;
+    }
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    public function getAge()
+    {
+        return $this->age;
+    }
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+    }
+    public function getSalary()
+    {
+        return $this->salary;
+    }
+    public function setSalary($salary)
+    {
+        $this->salary = $salary;
+    }
+    public function getHours()
+    {
+        return $this->hours;
+    }
+    public function setHours($hours)
+    {
+        $this->hours = $hours;
     }
 
-    function printInfo()
-    {
-        echo "========================================\n";
-        echo "Tên: " . $this->name . "\n";
-        echo "Tuổi: " . $this->age . "\n";
-        echo "Địa chỉ: " . $this->adress . "\n";
-        echo "Tiền lương: " . number_format($this->salary, '0', '', '.') . "\n";
-        echo "Tổng số giờ làm: " . $this->hours . "\n";
-    }
-    function bonus()
+    function bonus(): int
     {
         $hours = $this->hours;
         $salary = $this->salary;
@@ -47,11 +70,35 @@ class NhanVien
         } else {
             $bonus = 0;
         }
-        return "Tiền thưởng: " . number_format($bonus, '0', '', '.');
+        return $bonus;
     }
 }
 
 $data = new NhanVien();
-$data->inputInfo();
-$data->printInfo();
-echo $data->bonus();
+$data->setName(readline("Tên: "));
+$data->setAge(readline("Tuổi: "));
+$data->setAdress(readline("Địa chỉ: "));
+$data->setSalary(readline("Tiền lương: "));
+$data->setHours(readline("Tổng số giờ làm: "));
+
+echo "========================================\n";
+echo "Tên: " . $data->getName() . "\n";
+echo "Tuổi: " . $data->getAge() . "\n";
+echo "Địa chỉ: " . $data->getAdress() . "\n";
+echo "Tiền lương: " . number_format($data->getSalary(), '0', '', '.') . "\n";
+echo "Tổng số giờ làm: " . $data->getHours() . "\n";
+echo "Tiền thưởng: " . number_format($data->bonus(), '0', '', '.');
+
+// expect:
+// Tên: ha
+// Tuổi: 23
+// Địa chỉ: ha noi
+// Tiền lương: 15000000
+// Tổng số giờ làm: 140
+// ========================================
+// Tên: ha
+// Tuổi: 23
+// Địa chỉ: ha noi
+// Tiền lương: 15.000.000
+// Tổng số giờ làm: 140
+// Tiền thưởng: 1.500.000
