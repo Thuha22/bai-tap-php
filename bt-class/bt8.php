@@ -13,8 +13,8 @@
 <?php
 class Fraction
 {
-    public $tu;
-    public $mau;
+    private $tu;
+    private $mau;
 
     public function getTu()
     {
@@ -33,24 +33,9 @@ class Fraction
         $this->mau = $mau;
     }
 
-    public function inputInfo()
-    {
-        $this->tu = readline("Nhập tử phân số thứ nhất:");
-        $this->mau = readline("Nhập mẫu phân số thứ nhất:");
-    }
 
-    public function printInfo()
-    {
-        if ($this->tu == $this->mau) {
-            echo 1 . "\n";
-        } elseif ($this->tu == 0) {
-            echo 0 . "\n";
-        } else {
-            echo $this->tu . '/' . $this->mau . "\n";
-        }
-    }
-
-    public function timUCLN(int $a, int $b)
+    // Tìm ước chung lớn nhất của 2 số
+    public function timUCLN(int $a, int $b): int
     {
         if ($b == 0) {
             return $a;
@@ -62,7 +47,9 @@ class Fraction
         }
         return $a;
     }
-    public function rutGon($ps1)
+
+    //Tối giản phân số
+    public function rutGon(object $ps1): object
     {
         $kq = new Fraction();
         $uc = $ps1->timUCLN($ps1->tu, $ps1->mau);
@@ -71,7 +58,8 @@ class Fraction
         return $kq;
     }
 
-    public function nghichDao($ps1)
+    //Tìm phân số nghịch đảo 
+    public function nghichDao(object $ps1): object
     {
         $kq = new Fraction();
         $kq->tu = $ps1->mau;
@@ -79,7 +67,8 @@ class Fraction
         return $kq;
     }
 
-    public function add($ps2)
+    // Cộng hai phân số
+    public function add(object $ps2): object
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -88,7 +77,9 @@ class Fraction
         $kq->mau = $mau * $ps2->mau;
         return $kq->rutGon($kq);
     }
-    public function sub($ps2)
+
+    //Trừ hai phân số
+    public function sub(object $ps2): object
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -97,7 +88,9 @@ class Fraction
         $kq->mau = $mau * $ps2->mau;
         return $kq->rutGon($kq);
     }
-    public function mul($ps2)
+
+    //Nhân hai phân số
+    public function mul(object $ps2): object
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -106,14 +99,15 @@ class Fraction
         $kq->mau = $mau * $ps2->mau;
         return $kq->rutGon($kq);
     }
-    public function div($ps2)
+
+    // chia hai phân số
+    public function div(object $ps2): object
     {
         $kq = new Fraction();
         $tu = $this->tu;
         $mau = $this->mau;
         $kq->tu = $tu *  $ps2->mau;
         $kq->mau = $mau * $ps2->tu;
-        // return $kq;
         return $kq->rutGon($kq);
     }
 }
@@ -125,13 +119,14 @@ class Program
     {
         $ps1 = new Fraction();
         $ps2 = new Fraction();
-        $tong = new Fraction();
 
         //Nhập dữ liệu
         printf("Nhập dữ liệu phân số 1: \n");
-        $ps1->inputInfo();
+        $ps1->setTu(readline("Nhập tử số :"));
+        $ps1->setMau(readline("Nhập mẫu số :"));
         printf("Nhập dữ liệu phân số 2: \n");
-        $ps2->inputInfo();
+        $ps2->setTu(readline("Nhập tử số :"));
+        $ps2->setMau(readline("Nhập mẫu số :"));
 
         $tong = $ps1->add($ps2);
         $hieu = $ps1->sub($ps2);
@@ -140,17 +135,17 @@ class Program
 
         //Hiển thị
         printf("Phân số 1 vừa nhập là: ");
-        $ps1->printInfo();
-        printf("Phân số 2 vừa nhập là: ");
-        $ps2->printInfo();
-        printf("Tổng 2 phân số: ");
-        $tong->printInfo();
-        printf("Hiệu 2 phân số: ");
-        $hieu->printInfo();
-        printf("Tích 2 phân số: ");
-        $tich->printInfo();
-        printf("Thương 2 phân số: ");
-        $thuong->printInfo();
+        echo $ps1->getTu() . '/' . $ps1->getMau();
+        printf("\nPhân số 2 vừa nhập là: ");
+        echo $ps2->getTu() . '/' . $ps2->getMau();
+        printf("\nTổng 2 phân số: ");
+        echo $tong->getTu() . '/' . $tong->getMau();
+        printf("\nHiệu 2 phân số: ");
+        echo $hieu->getTu() . '/' . $hieu->getMau();
+        printf("\nTích 2 phân số: ");
+        echo $tich->getTu() . '/' . $tich->getMau();
+        printf("\nThương 2 phân số: ");
+        echo $thuong->getTu() . '/' . $thuong->getMau();
     }
 }
 
