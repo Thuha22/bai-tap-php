@@ -10,12 +10,15 @@ c. Phương thức showInfo(), hiển thị tất cả thông tin Student
 d. Viết phương thức xét xem Student có được học bổng không? Điểm trung bình trên 8.0 là được học bổng
 -->
 <?php
+
+use Program as GlobalProgram;
+
 class Student
 {
-    var $code;
-    var $score;
-    var $age;
-    var $class;
+    private $code;
+    private $score;
+    private $age;
+    private $class;
 
     public function getCode()
     {
@@ -23,14 +26,7 @@ class Student
     }
     public function setCode($code)
     {
-        // $this->code = $code;
-        // do {
-        if (strlen($code) == 8) {
-            $this->code = $code;
-        } else {
-            $this->setCode($code);
-        }
-        // } while (strlen($code) != 8);
+        $this->code = $code;
     }
     public function getScore()
     {
@@ -57,49 +53,45 @@ class Student
         $this->class = $class;
     }
 
-    function inputInfo()
-    {
-        do {
-            $this->code = readline("Mã số sinh viên:");
-        } while (strlen($this->code) != 8);
-        do {
-            $this->score = readline("Điểm trung bình:");
-        } while ($this->score < 0.0 || $this->score > 10.0);
-        do {
-            $this->age = readline("Tuổi:");
-        } while ($this->age < 18);
-        do {
-            $this->class = readline("Lớp:");
-        } while (($this->class)[0] != "A" && ($this->class)[0] != "C");
-    }
-
-    function showInfo()
-    {
-        echo "========================================\n";
-        echo "Mã số sinh viên: " . $this->code . "\n";
-        echo "Điểm trung bình: " . $this->score . "\n";
-        echo "Tuổi: " . $this->age . "\n";
-        echo "Lớp " . $this->class . "\n";
-    }
-    function hocBong()
+    // Check điều kiện học sinh đạt học bổng 
+    function hocBong(): bool
     {
         $score = $this->score;
         if ($score >= 8.0) {
-            return "Học bổng: Có";
+            return True;
         }
-        return "Học bổng: Không";
+        return false;
     }
 }
 
-$data = new Student();
-// $data->inputInfo();
-// $data->showInfo();
-// do {
-//     // if (strlen($code) == 8) {
-//     $data->setCode(readline("Mã số sinh viên:"));
-//     // }
-// } while (strlen($data->code) != 8);
-$data->setCode(readline("Mã số sinh viên:"));
-echo "========================================\n";
-echo "Mã số sinh viên: " . $data->getCode() . "\n";
-echo $data->hocBong();
+class Program
+{
+    function main()
+    {
+        // check điểu kiện thông tin nhập vào
+        $data = new Student();
+        do {
+            $data->setCode(readline("Mã số sinh viên:"));
+        } while (strlen($data->getCode()) != 8);
+        do {
+            $data->setScore(readline("Điểm trung bình:"));
+        } while ($data->getScore() < 0.0 || $data->getScore() > 10.0);
+        do {
+            $data->setAge(readline("Tuổi:"));
+        } while ($data->getAge() < 18);
+        do {
+            $data->setClass(readline("Lớp:"));
+        } while (($data->getClass())[0] != "A" && ($data->getClass())[0] != "C");
+
+        //Hiển thị thông tin
+        echo "========================================\n";
+        echo "Mã số sinh viên: " . $data->getCode() . "\n";
+        echo "Điểm trung bình: " . $data->getScore() . "\n";
+        echo "Tuổi: " . $data->getAge() . "\n";
+        echo "Lớp " . $data->getClass() . "\n";
+        echo "Học bổng:" . ($data->hocBong() ? 'Có' : 'Không');
+    }
+}
+
+$obj = new Program;
+$obj->main();
