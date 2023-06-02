@@ -49,7 +49,7 @@ class Fraction
     }
 
     //Tối giản phân số
-    public function rutGon(object $ps1): object
+    public function rutGon(Fraction $ps1): Fraction
     {
         $kq = new Fraction();
         $uc = $ps1->timUCLN($ps1->tu, $ps1->mau);
@@ -59,7 +59,7 @@ class Fraction
     }
 
     //Tìm phân số nghịch đảo 
-    public function nghichDao(object $ps1): object
+    public function nghichDao(Fraction $ps1): Fraction
     {
         $kq = new Fraction();
         $kq->tu = $ps1->mau;
@@ -68,7 +68,7 @@ class Fraction
     }
 
     // Cộng hai phân số
-    public function add(object $ps2): object
+    public function add(Fraction $ps2): Fraction
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -79,7 +79,7 @@ class Fraction
     }
 
     //Trừ hai phân số
-    public function sub(object $ps2): object
+    public function sub(Fraction $ps2): Fraction
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -90,7 +90,7 @@ class Fraction
     }
 
     //Nhân hai phân số
-    public function mul(object $ps2): object
+    public function mul(Fraction $ps2): Fraction
     {
         $kq = new Fraction();
         $tu = $this->tu;
@@ -101,7 +101,7 @@ class Fraction
     }
 
     // chia hai phân số
-    public function div(object $ps2): object
+    public function div(Fraction $ps2): Fraction
     {
         $kq = new Fraction();
         $tu = $this->tu;
