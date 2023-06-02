@@ -33,28 +33,28 @@ class SoPhuc
         $this->ao = $ao;
     }
 
-    public function add(object $so2): object
+    public function add(SoPhuc $so2): SoPhuc
     {
         $kq = new SoPhuc();
         $kq->thuc = $this->thuc + $so2->thuc;
         $kq->ao = $this->ao + $so2->ao;
         return $kq;
     }
-    public function sub(object $so2): object
+    public function sub(SoPhuc $so2): SoPhuc
     {
         $kq = new SoPhuc();
         $kq->thuc = $this->thuc - $so2->thuc;
         $kq->ao = $this->ao - $so2->ao;
         return $kq;
     }
-    public function mul(object $so2): object
+    public function mul(SoPhuc $so2): SoPhuc
     {
         $kq = new SoPhuc();
         $kq->thuc = $this->thuc * $so2->thuc - $this->ao * $so2->ao;
         $kq->ao = $this->thuc * $so2->ao + $this->ao * $so2->thuc;
         return $kq;
     }
-    public function div(object $so2): object
+    public function div(SoPhuc $so2): SoPhuc
     {
         $kq = new SoPhuc();
         $t1 = $this->thuc;
@@ -70,7 +70,7 @@ class SoPhuc
 class Program
 {
     // Hiển thị số phức 1
-    public function show(object $so1)
+    public function show(SoPhuc $so1)
     {
         echo $so1->getThuc();
         if ($so1->getAo() >= 0) {
