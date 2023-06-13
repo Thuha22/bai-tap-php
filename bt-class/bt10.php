@@ -30,7 +30,7 @@ class Vecto
     }
     public function setHDDau($hddau)
     {
-        $this->hddau = $hddau;xa
+        $this->hddau = $hddau;
     }
     public function getHDCuoi()
     {

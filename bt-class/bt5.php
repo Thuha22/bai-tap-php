@@ -17,13 +17,19 @@ class SoNguyenTo
     }
     public function setA($a)
     {
+        if ($this->isSoNguyenTo($a) == false) {
+            throw new Exception("Không set");
+        }
         $this->a = $a;
     }
     public function __construct($x)
     {
+        if ($this->isSoNguyenTo($x) == false) {
+            throw new Exception("x không phải là số nguyên tố, không lưu trữ");
+        }
         $this->a = $x;
     }
-    public function isSoNguyenTo($x)
+    private function isSoNguyenTo(int $x): bool
     {
         if ($x < 2) {
             return false;
@@ -35,13 +41,10 @@ class SoNguyenTo
         }
         return true;
     }
-}
 
-class SoNguyenToTiep extends SoNguyenTo
-{
     public function timSoNguyenToTiepTheo()
     {
-        $next = $this->getA() + 1;
+        $next = $this->a + 1;
         while ($this->isSoNguyenTo($next) == false) {
             $next++;
         }
@@ -54,17 +57,11 @@ class Show
     {
         $x = 5;
         $snt = new SoNguyenTo($x);
-        $nextsnt = new SoNguyenToTiep($x);
-        if ($snt->isSoNguyenTo($x)) {
-            $snt->__construct($x);
-            echo "Số nguyên tố tiếp theo sau " . $snt->getA() . " là: " . $nextsnt->timSoNguyenToTiepTheo();
-        } else {
-            echo "x không phải số nguyên tố, không lưu trữ";
-        }
+        echo "Số nguyên tố tiếp theo sau " . $snt->getA() . " là: " . $snt->timSoNguyenToTiepTheo();
     }
 }
 
 $obj = new Show();
-$obj->main();
+echo $obj->main();
 
 //expect: Số nguyên tố tiếp theo sau 5 là: 7 

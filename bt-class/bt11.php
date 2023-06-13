@@ -1,8 +1,6 @@
 <?php
 //Xây dựng lớp đa thức (polylomial) và các phép toán trên đa thức. Thực hiện nhập vào 2 đa thức và tính tổng, tích của nó.
 
-use Program as GlobalProgram;
-
 class DaThuc
 {
     private $bac;
@@ -47,21 +45,18 @@ class DaThuc
         return $kq;
     }
 
-    public function mul($dt2)
+    public function mul(DaThuc $dt2): DaThuc
     {
         $kq = new DaThuc();
         $kq->bac = 0;
         $kq->heso = [];
-        var_dump($kq);
         for ($i = 0; $i <= $this->bac; $i++) {
             $temp = new DaThuc();
-            $temp->$i + $dt2->bac;
+            $temp->bac = $i + $dt2->bac;
             for ($j = 0; $j <= $dt2->bac; $j++) {
                 $temp->heso[$i + $j] = $this->heso[$i] * $dt2->heso[$j];
             }
-            var_dump($temp);
             $kq = $kq->add($temp);
-            var_dump($kq);
         }
         return $kq;
     }
@@ -69,7 +64,7 @@ class DaThuc
 
 class Program
 {
-    public function show(DaThuc $dt1)
+    public function show(DaThuc $dt1): string
     {
         $str = $dt1->getHeSo()[0];
         if ($dt1->getHeSo()[1] < 0) {
@@ -93,6 +88,7 @@ class Program
         $dt1 = new DaThuc;
         $dt2 = new DaThuc;
 
+        // Nhập dữ liệu
         printf("\t------------ NHẬP ĐA THỨC 1 ------------\t\n");
         $dt1->setBac(readline("Nhập bậc của đa thức: "));
         print("Nhập các hệ số của đa thức: \n");
@@ -110,16 +106,35 @@ class Program
         $dt2->setHeSo($a);
 
         //Hiển thị
-        print("Đa thức 1: \n");
+        print("Đa thức 1: ");
         echo $this->show($dt1) . "\n";
-        print("Đa thức 2: \n");
+        print("Đa thức 2: ");
         echo $this->show($dt2) . "\n";
-        print("Tổng 2 đa thức: \n");
+        print("Tổng 2 đa thức: ");
         echo $this->show($dt1->add($dt2)) . "\n";
-
+        print("Tích 2 đa thức: ");
         echo $this->show($dt1->mul($dt2)) . "\n";
     }
 }
 
 $data = new Program;
 $data->main();
+
+/**
+ * expect:
+ *   ------------ NHẬP ĐA THỨC 1 ------------
+ * Nhập bậc của đa thức: 1
+ * Nhập các hệ số của đa thức:
+ * a[0]=-3
+ * a[1]=4
+ *   ------------ NHẬP ĐA THỨC 2 ------------
+ * Nhập bậc của đa thức: 2
+ * Nhập các hệ số của đa thức:
+ * a[0]=6
+ * a[1]=-5
+ * a[2]=2
+ * Đa thức 1: -3 + 4*x
+ * Đa thức 2: 6 - 5*x + 2*x^2
+ * Tổng 2 đa thức: 3 - 1*x + 2*x^2
+ * Tích 2 đa thức: -18 + 39*x - 26*x^2 + 8*x^3
+ */
